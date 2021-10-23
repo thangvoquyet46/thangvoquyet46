@@ -28,5 +28,5 @@ echo "Updating 95%\n";
 @system("pkg install root-repo");
 @system("pip install --upgrade pip && pip install telethon && pip install requests && pip install bs4 && pip install rsa && pip install pyaes && pip install async_generator && pip install colorama && pip install --upgrade pip");
 @system("clear");
-echo "Update successful");
+echo "Update successful\n");
 ?>
