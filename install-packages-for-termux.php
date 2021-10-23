@@ -1,14 +1,6 @@
 <?php
 //before installing, enter the command"pkg install php"
 echo "Updating 10%\n";
-sleep(2);
-echo "Updating 15%\n";
-sleep(3);
-echo "Updating 45%\n";
-sleep(1);
-echo "Updating 70%\n";
-sleep(3);
-echo "Updating 85%\n";
 sleep(3);
 echo "Updating 95%\n";
 @system("pkg update");
