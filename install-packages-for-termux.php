@@ -1,8 +1,5 @@
 <?php
 //before installing, enter the command"pkg install php"
-echo "Updating 10%\n";
-sleep(3);
-echo "Updating 95%\n";
 @system("pkg update");
 @system("pkg upgrade");
 @system("termux-setup-storage");
