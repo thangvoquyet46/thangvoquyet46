@@ -26,7 +26,23 @@ elif cat /proc/version | grep -Eqi "centos|red hat|redhat"; then
 else
     echo -e "${red}Hệ điều hành của bạn không được hỗ trợ！${plain}\n" && exit 1
 fi
+arch=$(arch)
 
+if [[ $arch == "x86_64" || $arch == "x64" || $arch == "amd64" ]]; then
+    arch="amd64"
+elif [[ $arch == "aarch64" || $arch == "arm64" ]]; then
+    arch="arm64"
+else
+    arch="amd64"
+    echo -e "${red}检测架构失败，使用默认架构: ${arch}${plain}"
+fi
+
+echo "架构: ${arch}"
+
+if [ $(getconf WORD_BIT) != '32' ] && [ $(getconf LONG_BIT) != '64' ]; then
+    echo "本软件不支持 32 位系统(x86)，请使用 64 位系统(x86_64)，如果检测有误，请联系作者"
+    exit -1
+fi
 os_version=""
 
 # os version
