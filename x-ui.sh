@@ -230,7 +230,7 @@ install_x-ui() {
         echo -e "Bắt đầu cài đặt x-ui v$1"
         wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.tar.gz ${url}
         if [[ $? -ne 0 ]]; then
-            echo -e "${red}下载 x-ui v$1 失败，请确保此版本存在${plain}"
+            echo -e "${red}Không tải xuống được x-ui v$1, hãy đảm bảo rằng phiên bản này tồn tại${plain}"
             exit 1
         fi
     fi
@@ -257,31 +257,30 @@ install_x-ui() {
     systemctl daemon-reload
     systemctl enable x-ui
     systemctl start x-ui
-    echo -e "${green}x-ui v${last_version}${plain} 安装完成，面板已启动，"
+    echo -e "${green}x-ui v${last_version}${plain} Quá trình cài đặt hoàn tất, bảng điều khiển được khởi chạy，"
     echo -e ""
-    echo -e "x-ui 管理脚本使用方法: "
+    echo -e "x-ui Cách sử dụng tập lệnh quản lý: "
     echo -e "----------------------------------------------"
-    echo -e "x-ui              - 显示管理菜单 (功能更多)"
-    echo -e "x-ui start        - 启动 x-ui 面板"
-    echo -e "x-ui stop         - 停止 x-ui 面板"
-    echo -e "x-ui restart      - 重启 x-ui 面板"
-    echo -e "x-ui status       - 查看 x-ui 状态"
-    echo -e "x-ui enable       - 设置 x-ui 开机自启"
-    echo -e "x-ui disable      - 取消 x-ui 开机自启"
-    echo -e "x-ui log          - 查看 x-ui 日志"
-    echo -e "x-ui v2-ui        - 迁移本机器的 v2-ui 账号数据至 x-ui"
-    echo -e "x-ui update       - 更新 x-ui 面板"
-    echo -e "x-ui install      - 安装 x-ui 面板"
-    echo -e "x-ui uninstall    - 卸载 x-ui 面板"
+    echo -e "x-ui              - Hiển thị menu quản trị (nhiều chức năng hơn) "
+    echo -e "x-ui start        - Khởi động bảng điều khiển x-ui "
+    echo -e "x-ui stop         - Dừng bảng điều khiển x-ui "
+    echo -e "x-ui restart      - Khởi động lại bảng điều khiển x-ui "
+    echo -e "x-ui status       - Xem trạng thái x-ui"
+    echo -e "x-ui enable       - Đặt x-ui để bắt đầu tự động khi khởi động"
+    echo -e "x-ui disable      - Hủy tự động khởi động x-ui boot"
+    echo -e "x-ui log          - Xem nhật ký x-ui"
+    echo -e "x-ui v2-ui        - Di chuyển dữ liệu tài khoản v2-ui của máy này sang x-ui"
+    echo -e "x-ui update       - Cập nhật bảng điều khiển x-ui"
+    echo -e "x-ui install      - Cài đặt bảng điều khiển x-ui"
+    echo -e "x-ui uninstall    - gỡ cài đặt bảng điều khiển x-ui"
+    echo -e "Copyright Zingfast"
     echo -e "----------------------------------------------"
 }
 
-echo -e "${green}开始安装${plain}"
+echo -e "${green}Bắt đầu cài đặt${plain}"
 install_base
 install_x-ui $1
-clear
-wget https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh
-bash install.sh
+
 apt install speedtest-cli -y
 clear
 echo -e "Bắt đầu kiểm tra tốc độ mạng"
@@ -292,80 +291,4 @@ echo -e "Kiểm tra hệ thống"
 neofetch
 echo -e "Kiểm tra địa chỉ ip"
 curl ipinfo.io
-echo -e ""
-echo -e "Copyright Zingfast"：${last_version}，开始安装"
-        wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.tar.gz https://github.com/vaxilu/x-ui/releases/download/${last_version}/x-ui-linux-${arch}.tar.gz
-        if [[ $? -ne 0 ]]; then
-            echo -e "${red}下载 x-ui 失败，请确保你的服务器能够下载 Github 的文件${plain}"
-            exit 1
-        fi
-    else
-        last_version=$1
-        url="https://github.com/vaxilu/x-ui/releases/download/${last_version}/x-ui-linux-${arch}.tar.gz"
-        echo -e "开始安装 x-ui v$1"
-        wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.tar.gz ${url}
-        if [[ $? -ne 0 ]]; then
-            echo -e "${red}下载 x-ui v$1 失败，请确保此版本存在${plain}"
-            exit 1
-        fi
-    fi
-
-    if [[ -e /usr/local/x-ui/ ]]; then
-        rm /usr/local/x-ui/ -rf
-    fi
-
-    tar zxvf x-ui-linux-${arch}.tar.gz
-    rm x-ui-linux-${arch}.tar.gz -f
-    cd x-ui
-    chmod +x x-ui bin/xray-linux-${arch}
-    cp -f x-ui.service /etc/systemd/system/
-    wget --no-check-certificate -O /usr/bin/x-ui https://raw.githubusercontent.com/vaxilu/x-ui/main/x-ui.sh
-    chmod +x /usr/local/x-ui/x-ui.sh
-    chmod +x /usr/bin/x-ui
-    config_after_install
-    #echo -e "如果是全新安装，默认网页端口为 ${green}54321${plain}，用户名和密码默认都是 ${green}admin${plain}"
-    #echo -e "请自行确保此端口没有被其他程序占用，${yellow}并且确保 54321 端口已放行${plain}"
-    #    echo -e "若想将 54321 修改为其它端口，输入 x-ui 命令进行修改，同样也要确保你修改的端口也是放行的"
-    #echo -e ""
-    #echo -e "如果是更新面板，则按你之前的方式访问面板"
-    #echo -e ""
-    systemctl daemon-reload
-    systemctl enable x-ui
-    systemctl start x-ui
-    echo -e "${green}x-ui v${last_version}${plain} 安装完成，面板已启动，"
-    echo -e ""
-    echo -e "x-ui 管理脚本使用方法: "
-    echo -e "----------------------------------------------"
-    echo -e "x-ui              - 显示管理菜单 (功能更多)"
-    echo -e "x-ui start        - 启动 x-ui 面板"
-    echo -e "x-ui stop         - 停止 x-ui 面板"
-    echo -e "x-ui restart      - 重启 x-ui 面板"
-    echo -e "x-ui status       - 查看 x-ui 状态"
-    echo -e "x-ui enable       - 设置 x-ui 开机自启"
-    echo -e "x-ui disable      - 取消 x-ui 开机自启"
-    echo -e "x-ui log          - 查看 x-ui 日志"
-    echo -e "x-ui v2-ui        - 迁移本机器的 v2-ui 账号数据至 x-ui"
-    echo -e "x-ui update       - 更新 x-ui 面板"
-    echo -e "x-ui install      - 安装 x-ui 面板"
-    echo -e "x-ui uninstall    - 卸载 x-ui 面板"
-    echo -e "----------------------------------------------"
-}
-
-echo -e "${green}开始安装${plain}"
-install_base
-install_x-ui $1
-clear
-wget https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh
-bash install.sh
-apt install speedtest-cli -y
-clear
-echo -e "Bắt đầu kiểm tra tốc độ mạng"
-speedtest
-apt install neofetch -y
-clear
-echo -e "Kiểm tra hệ thống"
-neofetch
-echo -e "Kiểm tra địa chỉ ip"
-curl ipinfo.io
-echo -e ""
-echo -e "Copyright Zingfast"
+#Copyright Zingfast
