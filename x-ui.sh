@@ -119,24 +119,6 @@ else
     echo -e "${red}Hệ điều hành của bạn không được hỗ trợ！${plain}\n" && exit 1
 fi
 
-arch=$(arch)
-
-if [[ $arch == "x86_64" || $arch == "x64" || $arch == "amd64" ]]; then
-    arch="amd64"
-elif [[ $arch == "aarch64" || $arch == "arm64" ]]; then
-    arch="arm64"
-else
-    arch="amd64"
-    echo -e "${red}${arch} ${plain}"
-fi
-
-echo "架构: ${arch}"
-
-if [ $(getconf WORD_BIT) != '32' ] && [ $(getconf LONG_BIT) != '64' ]; then
-    echo "Bản này không hỗ trợ hệ thống 32 bit (x86), vui lòng sử dụng hệ thống 64 bit (x86_64)"
-    exit -1
-fi
-
 os_version=""
 
 # os version
