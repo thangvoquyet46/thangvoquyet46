@@ -225,7 +225,7 @@ install_x-ui() {
     echo -e ""
     echo -e "x-ui Cách sử dụng tập lệnh quản lý: "
     echo -e "----------------------------------------------"
-    echo -e "x-ui              - Hiển thị menu quản trị (nhiều chức năng hơn) "
+    echo -e "x-ui              - Hiển thị menu quản trị "
     echo -e "x-ui start        - Khởi động bảng điều khiển x-ui "
     echo -e "x-ui stop         - Dừng bảng điều khiển x-ui "
     echo -e "x-ui restart      - Khởi động lại bảng điều khiển x-ui "
