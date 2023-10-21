@@ -8,3 +8,4 @@ mv x-ui/ /usr/local/
 systemctl daemon-reload
 systemctl enable x-ui
 systemctl restart x-ui
+echo -e "Hủy cài đặt x-ui thành công"
