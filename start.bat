@@ -8,10 +8,12 @@ Title MC Server
 -XX:MaxRAMPercentage=45.0 
 -XX:+UseG1GC 
 -XX:+ParallelRefProcEnabled 
--XX:MaxGCPauseMillis=200 
+-XX:MaxGCPauseMillis=50 
 -XX:+PerfDisableSharedMem 
+-XX:MaxTenuringThreshold=1
 -Dusing.aikars.flags=https://mcflags.emc.gs/ 
--Daikars.new.flags=true -Dlog4j2.formatMsgNoLookups=true 
+-Daikars.new.flags=true 
+-Dlog4j2.formatMsgNoLookups=true 
 -Duser.timezone="Asia/Ho_Chi_Minh" 
 -Dfile.encoding=UTF-8 
 -Dsun.jnu.encoding=UTF-8 
