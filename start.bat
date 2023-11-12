@@ -1,6 +1,6 @@
 @echo off
-:mc
 chcp 65001
+:mc
 Title MC Server
 color f
 "C:\Program Files\Java\jdk-20\bin\java" -Xms8G -Xmx8G 
