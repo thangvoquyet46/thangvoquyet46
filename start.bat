@@ -1,8 +1,8 @@
 @echo off
-chcp 65001
 :mc
+chcp 65001
 Title MC Server
-color f
+color 0C
 "C:\Program Files\Java\jdk-20\bin\java" -Xms8G -Xmx8G 
 -add-modules=jdk.incubator.vector 
 -XX:MaxRAMPercentage=45.0 
